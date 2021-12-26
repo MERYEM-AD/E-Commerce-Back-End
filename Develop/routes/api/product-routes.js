@@ -22,7 +22,6 @@ router.get('/', async(req, res) => {
 // get one product
 router.get('/:id', async(req, res) => {
   // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
   try {
     const products = await Product.findByPk(req.params.id,
       {
@@ -40,7 +39,7 @@ router.get('/:id', async(req, res) => {
 });
 
 // create new product
-router.post('/', (req, res) => {
+router.post('/', async(req, res) => {
   /* req.body should look like this...
     {
       product_name: "Basketball",
@@ -49,26 +48,35 @@ router.post('/', (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */
-  Product.create(req.body)
+
+  try {
+
+    Product.create(req.body)
     .then((product) => {
-      // if there's product tags, we need to create pairings to bulk create in the ProductTag model
+      //check if the tagIds not empty 
       if (req.body.tagIds.length) {
-        const productTagIdArr = req.body.tagIds.map((tag_id) => {
+        const ProductTagsId = req.body.tagIds.map((tagId) => {
           return {
+            tagId,
             product_id: product.id,
-            tag_id,
+
           };
         });
-        return ProductTag.bulkCreate(productTagIdArr);
-      }
-      // if no product tags, just respond
+        //seeds ProductTag with ProductTagsId
+        return ProductTag.bulkCreate(ProductTagsId);
+      }else {
       res.status(200).json(product);
+    }
     })
     .then((productTagIds) => res.status(200).json(productTagIds))
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json(err);
-    });
+    
+     
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+
 });
 
 // update product
