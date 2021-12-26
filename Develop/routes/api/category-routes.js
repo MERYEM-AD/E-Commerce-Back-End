@@ -66,7 +66,7 @@ router.put('/:id', async(req, res) => {
       });
     res.status(200).json({
       UpdateCategory,
-      message:" Congratulations, The Category  has ben Updated Successfully !!"
+      message:" Congratulations, The Category has ben Updated Successfully !!"
     })
 
   } catch (err) {
@@ -76,8 +76,26 @@ router.put('/:id', async(req, res) => {
 
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async(req, res) => {
   // delete a category by its `id` value
+
+  try {
+    const DeleteCategory = await Category.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+    res.status(200).json(
+      {DeleteCategory,
+      message :"Warings : You Just Have delete a Category"})
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+
+
+
 });
 
 module.exports = router;
