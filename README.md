@@ -71,9 +71,9 @@ Get All Categories:
 
   ## Links
 
-  * Watch [the walkthrough video]() that demonstrates the functionality of the application.
+  * Watch [the walkthrough video](https://drive.google.com/file/d/1avpIVCUPCC9kAbydm0pkSB2fF0kuBmj0/view) that demonstrates the functionality of the application.
 
-  * The URL of the GitHub repository : https://github.com/MERYEM-AD/Employee-Tracker 
+  * The URL of the GitHub repository : https://github.com/MERYEM-AD/E-Commerce-Back-End 
   ## Questions
   iF you have any questions about the repo you can contact me by email : adiri.meryem.mw@gmail.com.
 
