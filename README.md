@@ -2,7 +2,7 @@
 
   ![License: ISC](https://img.shields.io/badge/license-ISC-green)
   ## Description:
-  The Application requires to build the back end for an e-commerce site using Express.js  API ,Sequelize ,MySQL.
+The Application requires building the back end for an e-commerce site using Express.js API, Sequelize, MySQL.
 
   ## User Story
 
